@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { SKILLS } from '@/lib/constants';
@@ -11,6 +11,7 @@ import { slideUpVariants, containerVariants, itemVariants } from '@/lib/animatio
 export function SkillsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
 
   const categoryIcons: { [key: string]: string } = {
     'Languages & Frameworks': '📝',
@@ -18,6 +19,7 @@ export function SkillsSection() {
     'Databases': '🗄️',
     'Engineering Practices': '⚙️',
   };
+  const maxSkills = Math.max(...Object.values(SKILLS).map((skills) => skills.length));
 
   return (
     <section id="skills" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
@@ -51,16 +53,32 @@ export function SkillsSection() {
             animate={isInView ? 'visible' : 'hidden'}
             className="grid md:grid-cols-2 gap-4 sm:gap-6"
           >
-            {Object.entries(SKILLS).map(([category, skills]) => (
+            {Object.entries(SKILLS).map(([category, skills]) => {
+              const progress = Math.min(95, Math.round((skills.length / maxSkills) * 100));
+
+              return (
               <motion.div
                 key={category}
                 variants={itemVariants}
               >
-                <Card className="p-5 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 h-full">
+                <motion.div
+                  whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                  transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+                  className="h-full transform-gpu"
+                >
+                  <Card className="p-5 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 h-full">
                   <div className="mb-4">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-xl sm:text-2xl">{categoryIcons[category]}</span>
                       <h3 className="text-lg font-semibold text-foreground">{category}</h3>
+                    </div>
+                    <div className="mt-3 h-2 rounded-full bg-background/60 overflow-hidden">
+                      <motion.div
+                        className="h-full bg-gradient-to-r from-primary to-accent"
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: `${progress}%` } : { width: 0 }}
+                        transition={{ duration: prefersReducedMotion ? 0 : 1.2, ease: 'easeInOut' }}
+                      />
                     </div>
                   </div>
 
@@ -73,7 +91,7 @@ export function SkillsSection() {
                       >
                         <Badge
                           variant="secondary"
-                          className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/30 cursor-pointer"
+                          className="bg-primary/10 text-primary hover:bg-primary/20 border-primary/30 cursor-pointer badge-glow"
                         >
                           {skill}
                         </Badge>
@@ -81,8 +99,9 @@ export function SkillsSection() {
                     ))}
                   </div>
                 </Card>
+                </motion.div>
               </motion.div>
-            ))}
+            )})}
           </motion.div>
         </motion.div>
       </div>

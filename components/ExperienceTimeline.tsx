@@ -1,16 +1,23 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Card } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { EXPERIENCE } from '@/lib/constants';
 import { useInView } from 'framer-motion';
-import { useRef } from 'react';
-import { slideUpVariants, itemVariants } from '@/lib/animations';
+import { useRef, useState } from 'react';
+import { slideUpVariants } from '@/lib/animations';
 
 export function ExperienceTimeline() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
+  const [expandedId, setExpandedId] = useState<number | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start end', 'end start'],
+  });
+  const lineScale = useTransform(scrollYProgress, [0, 0.9], [0, 1]);
 
   return (
     <section id="experience" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
@@ -39,7 +46,10 @@ export function ExperienceTimeline() {
           </div>
 
           <div className="relative">
-            <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0" />
+            <motion.div
+              className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary/0 via-primary/50 to-primary/0 origin-top"
+              style={prefersReducedMotion ? undefined : { scaleY: lineScale }}
+            />
 
             <div className="space-y-8">
               {EXPERIENCE.map((job, index) => (
@@ -51,7 +61,8 @@ export function ExperienceTimeline() {
                   className={`relative md:flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
                 >
                   <div className="md:w-1/2 md:px-6 mb-6 md:mb-0 pl-6 md:pl-0">
-                    <Card className="p-5 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 h-full">
+                    <motion.div layout>
+                      <Card className="p-5 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 h-full">
                       <div className="flex items-start justify-between mb-3">
                         <div>
                           <h3 className="text-lg sm:text-xl font-bold text-foreground">{job.role}</h3>
@@ -62,15 +73,31 @@ export function ExperienceTimeline() {
                       <p className="text-sm text-foreground/60 mb-4">{job.period}</p>
                       <p className="text-foreground/70 mb-4 leading-relaxed">{job.description}</p>
 
-                      <div className="space-y-2">
-                        {job.highlights.map((highlight, i) => (
-                          <div key={i} className="flex items-start gap-2">
-                            <span className="text-primary mt-1">▸</span>
-                            <p className="text-sm text-foreground/60">{highlight}</p>
-                          </div>
-                        ))}
-                      </div>
-                    </Card>
+                      <button
+                        type="button"
+                        onClick={() => setExpandedId(expandedId === job.id ? null : job.id)}
+                        className="text-sm font-semibold text-primary hover:text-accent transition-colors"
+                      >
+                        {expandedId === job.id ? 'Hide Highlights' : 'View Highlights'}
+                      </button>
+
+                      <motion.div
+                        initial={false}
+                        animate={expandedId === job.id ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                        transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+                        className="overflow-hidden mt-4"
+                      >
+                        <div className="space-y-2">
+                          {job.highlights.map((highlight, i) => (
+                            <div key={i} className="flex items-start gap-2">
+                              <span className="text-primary mt-1">▸</span>
+                              <p className="text-sm text-foreground/60">{highlight}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                      </Card>
+                    </motion.div>
                   </div>
 
                   <div className="hidden md:flex md:w-1/2 justify-center">

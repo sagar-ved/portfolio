@@ -4,12 +4,15 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { motion, useReducedMotion } from 'framer-motion';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
+  const [activeId, setActiveId] = useState('hero');
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     setMounted(true);
@@ -24,10 +27,32 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const ids = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+    const observers: IntersectionObserver[] = [];
+
+    ids.forEach((id) => {
+      const element = document.getElementById(id);
+      if (!element) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setActiveId(id);
+          }
+        },
+        { rootMargin: '-30% 0px -60% 0px', threshold: 0.1 }
+      );
+      observer.observe(element);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach((observer) => observer.disconnect());
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
     }
     setIsOpen(false);
   };
@@ -65,9 +90,16 @@ export function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+                className="relative px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
               >
                 {item.label}
+                {activeId === item.id && (
+                  <motion.span
+                    layoutId="active-nav"
+                    className="absolute left-2 right-2 -bottom-1 h-0.5 rounded-full bg-gradient-to-r from-primary to-accent"
+                    transition={{ type: 'spring', stiffness: 120, damping: 22 }}
+                  />
+                )}
               </button>
             ))}
           </div>
@@ -111,7 +143,16 @@ export function Navbar() {
                 onClick={() => scrollToSection(item.id)}
                 className="block w-full text-left px-3 py-2 text-base font-medium text-foreground/70 hover:text-foreground transition-colors hover:bg-card rounded"
               >
-                {item.label}
+                <span className="flex items-center justify-between">
+                  {item.label}
+                  {activeId === item.id && (
+                    <motion.span
+                      layoutId="active-nav-mobile"
+                      className="h-2 w-2 rounded-full bg-primary"
+                      transition={{ type: 'spring', stiffness: 120, damping: 22 }}
+                    />
+                  )}
+                </span>
               </button>
             ))}
           </div>

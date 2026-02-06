@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { useInView } from 'framer-motion';
@@ -10,6 +10,7 @@ import { slideUpVariants } from '@/lib/animations';
 export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section id="about" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
@@ -43,14 +44,19 @@ export function AboutSection() {
               initial="hidden"
               animate={isInView ? 'visible' : 'hidden'}
             >
-              <Card className="overflow-hidden border-border/40 bg-card/50 backdrop-blur">
-                <div className="aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-5xl sm:text-6xl mb-4">👨‍💻</div>
-                    <p className="text-foreground/60">Professional Headshot</p>
+              <motion.div
+                whileHover={prefersReducedMotion ? undefined : { y: -6 }}
+                transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+              >
+                <Card className="overflow-hidden border-border/40 bg-card/50 backdrop-blur">
+                  <div className="aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-5xl sm:text-6xl mb-4">👨‍💻</div>
+                      <p className="text-foreground/60">Professional Headshot</p>
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </motion.div>
             </motion.div>
 
             <motion.div

@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -16,6 +16,7 @@ import { toast } from 'sonner';
 export function ContactSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -23,6 +24,7 @@ export function ContactSection() {
     message: '',
   });
   const [isLoading, setIsLoading] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,6 +46,8 @@ export function ContactSection() {
       if (response.ok) {
         toast.success('Message sent successfully!');
         setFormData({ name: '', email: '', message: '' });
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 2500);
       } else {
         toast.error('Failed to send message. Please try again.');
       }
@@ -104,7 +108,7 @@ export function ContactSection() {
                       placeholder="Your name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="bg-background/50 border-border/40 text-foreground"
+                      className="bg-background/50 border-border/40 text-foreground transition focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       disabled={isLoading}
                     />
                   </div>
@@ -117,7 +121,7 @@ export function ContactSection() {
                       placeholder="your@email.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="bg-background/50 border-border/40 text-foreground"
+                      className="bg-background/50 border-border/40 text-foreground transition focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       disabled={isLoading}
                     />
                   </div>
@@ -130,7 +134,7 @@ export function ContactSection() {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       rows={5}
-                      className="bg-background/50 border-border/40 text-foreground resize-none"
+                      className="bg-background/50 border-border/40 text-foreground resize-none transition focus-visible:ring-2 focus-visible:ring-primary/60 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                       disabled={isLoading}
                     />
                   </div>
@@ -138,12 +142,25 @@ export function ContactSection() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold"
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold ripple-button"
                     disabled={isLoading}
                   >
                     {isLoading ? 'Sending...' : 'Send Message'}
                   </Button>
                 </form>
+
+                {showSuccess && (
+                  <motion.div
+                    initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                    animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+                    exit={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+                    transition={{ type: 'spring', stiffness: 110, damping: 22 }}
+                    className="mt-4 flex items-center gap-2 text-sm text-primary"
+                  >
+                    <span className="inline-flex h-2 w-2 rounded-full bg-primary" />
+                    Message sent successfully.
+                  </motion.div>
+                )}
               </Card>
             </motion.div>
 

@@ -7,6 +7,7 @@ import { ProjectsSection } from '@/components/ProjectsSection';
 import { CertificationsSection } from '@/components/CertificationsSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
+import { MotionShell } from '@/components/MotionShell';
 import { Toaster } from 'sonner';
 
 export const metadata = {
@@ -30,7 +31,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <>
+    <MotionShell>
       <Navbar />
       <main>
         <HeroSection />
@@ -43,6 +44,6 @@ export default function Home() {
       </main>
       <Footer />
       <Toaster position="top-right" theme="dark" />
-    </>
+    </MotionShell>
   );
 }

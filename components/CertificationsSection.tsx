@@ -1,15 +1,16 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { CERTIFICATIONS } from '@/lib/constants';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { slideUpVariants, containerVariants, itemVariants } from '@/lib/animations';
+import { slideUpVariants, containerVariants, popInVariants } from '@/lib/animations';
 
 export function CertificationsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section id="certifications" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
@@ -44,15 +45,17 @@ export function CertificationsSection() {
             className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
           >
             {CERTIFICATIONS.map((cert) => (
-              <motion.div
-                key={cert.id}
-                variants={itemVariants}
-              >
-                <Card className="p-4 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 text-center group cursor-pointer h-full flex flex-col items-center justify-center">
+              <motion.div key={cert.id} variants={popInVariants}>
+                <motion.div
+                  whileHover={prefersReducedMotion ? undefined : { y: -4, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 120, damping: 22 }}
+                  className="h-full"
+                >
+                  <Card className="p-4 sm:p-6 border-border/40 bg-card/50 backdrop-blur hover:border-primary/50 transition-all duration-300 text-center group cursor-pointer h-full flex flex-col items-center justify-center glow-ring">
                   <motion.div
                     className="text-4xl sm:text-5xl mb-3"
                     whileHover={{ scale: 1.2, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
+                    transition={{ type: 'spring', stiffness: 140, damping: 20 }}
                   >
                     {cert.icon}
                   </motion.div>
@@ -60,6 +63,7 @@ export function CertificationsSection() {
                     {cert.title}
                   </h3>
                 </Card>
+                </motion.div>
               </motion.div>
             ))}
           </motion.div>

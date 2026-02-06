@@ -9,14 +9,20 @@ export const containerVariants = {
   },
 };
 
+export const springIn = {
+  type: 'spring',
+  stiffness: 80,
+  damping: 22,
+};
+
 export const itemVariants = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: 'easeOut' as const,
+      duration: 0.8,
+      ease: 'easeInOut' as const,
     },
   },
 };
@@ -35,8 +41,37 @@ export const slideUpVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.9,
+      ease: 'easeInOut' as const,
     },
+  },
+};
+
+export const staggerFast = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+export const letterVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: springIn,
+  },
+};
+
+export const popInVariants = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: springIn,
   },
 };
 

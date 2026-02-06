@@ -1,11 +1,12 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
+  const prefersReducedMotion = useReducedMotion();
 
   const socialLinks = [
     { icon: Github, href: PORTFOLIO_DATA.github, label: 'GitHub' },
@@ -44,7 +45,7 @@ export function Footer() {
                     const sectionId = link.toLowerCase();
                     const element = document.getElementById(sectionId);
                     if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
+                      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
                     }
                   }}
                   className="block text-foreground/60 hover:text-primary transition-colors text-sm"
