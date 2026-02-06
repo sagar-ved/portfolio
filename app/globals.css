@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 15 8% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 15 8% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 217 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 190 100% 45%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 40%;
+    --muted-foreground: 0 0% 70%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 190 100% 50%;
+    --chart-1: 217 100% 50%;
+    --chart-2: 190 100% 45%;
+    --chart-3: 32 95% 44%;
+    --chart-4: 262 80% 50%;
+    --chart-5: 355 85% 55%;
+    --radius: 0.5rem;
+  }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 190 90% 55%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 88%;
+    --muted-foreground: 0 0% 45%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 92%;
+    --input: 0 0% 96%;
+    --ring: 217 91% 60%;
+    --chart-1: 217 91% 60%;
+    --chart-2: 190 90% 55%;
+    --chart-3: 32 95% 44%;
+    --chart-4: 262 80% 50%;
+    --chart-5: 355 85% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  code, pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
