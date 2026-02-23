@@ -10,7 +10,7 @@ export const containerVariants = {
 };
 
 export const springIn = {
-  type: 'spring',
+  type: 'spring' as const,
   stiffness: 80,
   damping: 22,
 };

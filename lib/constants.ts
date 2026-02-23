@@ -2,11 +2,11 @@ export const PORTFOLIO_DATA = {
   name: 'SAGAR VED BAIRWA',
   title: 'Senior Backend Engineer',
   subtitle: 'Distributed Systems | High-Scale Microservices | Java',
-  tagline: 'Building reliable B2B travel infrastructure for flights, hotels, and trains at scale.',
+  tagline: 'Building reliable, scalable backend platforms and high-performance APIs for business-critical systems.',
 
-  about: `Senior Backend Engineer with 3+ years of experience building scalable, high-availability systems in the travel-tech domain.
-At Yatra, I design and operate B2B backend infrastructure powering flights, hotels, and trains.
-My focus areas include system design, microservices architecture, database and API performance optimization, and distributed system reliability.`,
+  about: `Senior Backend Engineer with 3+ years of experience building scalable, high-availability backend systems.
+I design and operate business-critical platforms with end-to-end ownership across architecture, development, and production reliability.
+My focus areas include system design, microservices architecture, API development, performance optimization, and resilient distributed systems.`,
 
   email: 'sagarvedbairwa.dev@gmail.com',
   github: 'https://github.com/sagar-ved',
@@ -35,6 +35,11 @@ export const SKILLS = {
   'Infrastructure & Tools': [
     'API Gateway',
     'Aerospike',
+    'Bare Linux Hardware',
+    'On-Premise Servers',
+    'Docker',
+    'Kubernetes',
+    'GCP',
     'Git',
     'Agile/Scrum',
   ],
