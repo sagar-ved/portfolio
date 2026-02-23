@@ -1,8 +1,6 @@
 'use client';
 
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Github, Linkedin, FileText } from 'lucide-react';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { containerVariants, itemVariants, letterVariants, staggerFast } from '@/lib/animations';
 import { useRef } from 'react';
@@ -76,54 +74,14 @@ export function HeroSection() {
 
           <motion.p
             variants={itemVariants}
-            className="text-sm sm:text-base md:text-lg text-foreground/60 max-w-2xl mx-auto mb-10 sm:mb-12 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-foreground/60 max-w-2xl mx-auto mb-14 sm:mb-16 leading-relaxed"
           >
             {PORTFOLIO_DATA.tagline}
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="w-full sm:w-auto bg-primary hover:bg-primary/90 text-primary-foreground transition-transform hover:scale-[1.02]"
-            >
-              <a href={PORTFOLIO_DATA.resume} target="_blank" rel="noopener noreferrer">
-                <FileText className="mr-2 h-4 w-4" />
-                View Resume
-              </a>
-            </Button>
-
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto border-primary/50 hover:border-primary text-foreground transition-transform hover:scale-[1.02]"
-            >
-              <a href={PORTFOLIO_DATA.github} target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 w-4" />
-                GitHub
-              </a>
-            </Button>
-
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="w-full sm:w-auto border-primary/50 hover:border-primary text-foreground transition-transform hover:scale-[1.02]"
-            >
-              <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noopener noreferrer">
-                <Linkedin className="mr-2 h-4 w-4" />
-                LinkedIn
-              </a>
-            </Button>
-          </motion.div>
-
-          <motion.div
-            variants={itemVariants}
-            className="mt-16"
+            className="mt-8"
           >
             <motion.div
               animate={prefersReducedMotion ? undefined : { y: [0, 10, 0] }}

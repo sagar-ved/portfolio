@@ -11,20 +11,20 @@ import { MotionShell } from '@/components/MotionShell';
 import { Toaster } from 'sonner';
 
 export const metadata = {
-  title: 'Sagar Ved Bairwa - Backend Engineer',
+  title: 'SAGAR VED BAIRWA - Senior Backend Engineer',
   description: 'Senior Backend Engineer specializing in scalable systems, microservices, and distributed architecture.',
   keywords: 'Backend Engineer, Java, Spring Boot, Microservices, Distributed Systems',
-  authors: [{ name: 'Sagar Ved Bairwa' }],
+  authors: [{ name: 'SAGAR VED BAIRWA' }],
   metadataBase: new URL('https://sagarvdbairwa.com'),
   openGraph: {
-    title: 'Sagar Ved Bairwa - Backend Engineer',
+    title: 'SAGAR VED BAIRWA - Senior Backend Engineer',
     description: 'Senior Backend Engineer specializing in scalable systems and high-performance APIs.',
     type: 'website',
     url: 'https://sagarvdbairwa.com',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Sagar Ved Bairwa - Backend Engineer',
+    title: 'SAGAR VED BAIRWA - Senior Backend Engineer',
     description: 'Senior Backend Engineer specializing in scalable systems and high-performance APIs.',
   },
 };

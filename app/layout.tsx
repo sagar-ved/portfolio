@@ -18,10 +18,10 @@ export default function RootLayout({
         <meta name="theme-color" content="#1f2937" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sagarvdbairwa.com" />
-        <meta property="og:title" content="Sagar Ved Bairwa - Backend Engineer" />
+        <meta property="og:title" content="SAGAR VED BAIRWA - Senior Backend Engineer" />
         <meta property="og:description" content="Senior Backend Engineer specializing in scalable systems, microservices, and distributed architecture." />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Sagar Ved Bairwa - Backend Engineer" />
+        <meta name="twitter:title" content="SAGAR VED BAIRWA - Senior Backend Engineer" />
         <meta name="twitter:description" content="Senior Backend Engineer specializing in scalable systems, microservices, and distributed architecture." />
       </head>
       <body suppressHydrationWarning>

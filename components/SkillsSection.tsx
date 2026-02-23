@@ -14,10 +14,10 @@ export function SkillsSection() {
   const prefersReducedMotion = useReducedMotion();
 
   const categoryIcons: { [key: string]: string } = {
+    'Backend & Architecture': '🏗️',
     'Languages & Frameworks': '📝',
-    'Architecture & Backend': '🏗️',
     'Databases': '🗄️',
-    'Engineering Practices': '⚙️',
+    'Infrastructure & Tools': '⚙️',
   };
   const maxSkills = Math.max(...Object.values(SKILLS).map((skills) => skills.length));
 

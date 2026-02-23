@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { PORTFOLIO_DATA } from '@/lib/constants';
+import { FileText, Github, Linkedin, Mail } from 'lucide-react';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { slideUpVariants } from '@/lib/animations';
@@ -11,6 +12,12 @@ export function AboutSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
   const prefersReducedMotion = useReducedMotion();
+  const profileLinks = [
+    { icon: FileText, href: PORTFOLIO_DATA.resume, label: 'Resume' },
+    { icon: Github, href: PORTFOLIO_DATA.github, label: 'GitHub' },
+    { icon: Linkedin, href: PORTFOLIO_DATA.linkedin, label: 'LinkedIn' },
+    { icon: Mail, href: `mailto:${PORTFOLIO_DATA.email}`, label: 'Email' },
+  ];
 
   return (
     <section id="about" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-card/30">
@@ -49,11 +56,13 @@ export function AboutSection() {
                 transition={{ type: 'spring', stiffness: 110, damping: 22 }}
               >
                 <Card className="overflow-hidden border-border/40 bg-card/50 backdrop-blur">
-                  <div className="aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-5xl sm:text-6xl mb-4">👨‍💻</div>
-                      <p className="text-foreground/60">Professional Headshot</p>
-                    </div>
+                  <div className="aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/20 to-accent/20">
+                    <img
+                      src="/images/headshots/IMG_20260112_091144.jpg"
+                      alt="Professional headshot"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </Card>
               </motion.div>
@@ -69,6 +78,22 @@ export function AboutSection() {
               <p className="text-base sm:text-lg text-foreground/80 leading-relaxed">
                 {PORTFOLIO_DATA.about}
               </p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                {profileLinks.map(({ icon: Icon, href, label }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target={href.startsWith('mailto:') ? undefined : '_blank'}
+                    rel={href.startsWith('mailto:') ? undefined : 'noopener noreferrer'}
+                    aria-label={label}
+                    title={label}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/30 bg-card/60 text-primary transition-all hover:border-primary hover:bg-primary/10 hover:text-accent"
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                ))}
+              </div>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">

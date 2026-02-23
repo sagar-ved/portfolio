@@ -1,64 +1,57 @@
 export const PORTFOLIO_DATA = {
-  name: 'Sagar Ved Bairwa',
-  title: 'Backend Engineer',
-  subtitle: 'Java | Spring Boot | Distributed Systems',
-  tagline: 'Building scalable systems and high-performance APIs',
+  name: 'SAGAR VED BAIRWA',
+  title: 'Senior Backend Engineer',
+  subtitle: 'Distributed Systems | High-Scale Microservices | Java',
+  tagline: 'Building reliable B2B travel infrastructure for flights, hotels, and trains at scale.',
 
-  about: `I am a Backend Engineer with 3+ years of experience designing and implementing scalable distributed systems.
-My expertise spans building high-performance microservices, optimizing databases for production workloads,
-and architecting robust APIs that power mission-critical applications. I specialize in creating systems that prioritize
-high availability, performance, and maintainability. I have deep experience with Java, Spring Boot, and modern backend technologies.`,
+  about: `Senior Backend Engineer with 3+ years of experience building scalable, high-availability systems in the travel-tech domain.
+At Yatra, I design and operate B2B backend infrastructure powering flights, hotels, and trains.
+My focus areas include system design, microservices architecture, database and API performance optimization, and distributed system reliability.`,
 
-  email: 'sagar@example.com',
+  email: 'sagarvedbairwa.dev@gmail.com',
   github: 'https://github.com/sagar-ved',
-  linkedin: 'https://linkedin.com/in/sagarvdbairwa',
-  resume: 'https://example.com/resume.pdf',
+  linkedin: 'https://linkedin.com/in/sagarvedbairwa',
+  resume: '/resume/SAGAR_BAIRWA_RESUME.pdf',
 };
 
 export const SKILLS = {
+  'Backend & Architecture': [
+    'Distributed Systems',
+    'Microservices Architecture',
+    'REST API Design',
+    'System Design',
+    'High-Availability Systems',
+  ],
   'Languages & Frameworks': [
     'Java',
     'Spring Boot',
     'Spring MVC',
-    'Kotlin',
-  ],
-  'Architecture & Backend': [
-    'Microservices',
-    'Distributed Systems',
-    'REST APIs',
-    'API Gateway Design',
-    'Authentication & SSO',
-    'Wallet & Transaction Systems',
   ],
   'Databases': [
     'MySQL',
-    'PostgreSQL',
     'MongoDB',
-    'Aerospike',
-    'Redis',
+    'Query Optimization',
   ],
-  'Engineering Practices': [
-    'Performance Optimization',
-    'Debugging',
-    'Root Cause Analysis',
+  'Infrastructure & Tools': [
+    'API Gateway',
+    'Aerospike',
+    'Git',
     'Agile/Scrum',
-    'System Migration',
-    'CI/CD',
   ],
 };
 
 export const EXPERIENCE = [
   {
     id: 1,
-    role: 'Senior Software Engineer',
+    role: 'Senior Backend Engineer',
     company: 'Yatra Online Ltd',
-    period: 'Dec 2024 – Present',
-    description: 'Leading platform migration and core business workflow design with end-to-end backend ownership.',
+    period: 'Dec 2024 – Present | Gurugram',
+    description: 'Leading migration of the Corporate Flights platform to a modern architecture with stronger maintainability and extensibility.',
     highlights: [
-      'Platform migration leadership',
-      'Core business workflow design',
-      'End-to-end backend ownership',
-      'High-performance microservices architecture',
+      'Designed and implemented critical modules including Air Reseller model, duplicate PNR handling, and flight rescheduling workflows.',
+      'Own end-to-end B2B backend infrastructure for flights, hotels, and trains.',
+      'Architect and maintain scalable microservices with high availability and secure cross-domain integrations.',
+      'Partner with product and business teams to ship production-grade systems aligned with business KPIs.',
     ],
   },
   {
@@ -66,25 +59,25 @@ export const EXPERIENCE = [
     role: 'Backend Engineer',
     company: 'Yatra Online Ltd',
     period: 'Jul 2023 – Dec 2024',
-    description: 'Developed high-traffic REST APIs and optimized database performance for millions of requests.',
+    description: 'Built core B2B APIs and gateway services while improving production reliability and backend performance.',
     highlights: [
-      'High traffic REST APIs handling millions of requests',
-      'API gateway architecture design',
-      'Database optimization and query performance',
-      'System reliability improvements',
+      'Designed and developed core B2B APIs including multi-profile login and wallet integration services.',
+      'Built and optimized API Gateway services across Flights, Hotels, Trains, and Online Gateway platforms.',
+      'Reduced service downtime by 15% through deep debugging and query optimization.',
+      'Improved delivery velocity by leading Agile standups and sprint coordination.',
     ],
   },
   {
     id: 3,
-    role: 'Backend Intern',
+    role: 'SDE Backend Intern',
     company: 'Yatra Online Ltd',
     period: 'Jan 2023 – Jul 2023',
-    description: 'Contributed to performance optimization and production debugging of core services.',
+    description: 'Improved backend infrastructure for SEO-critical services using Java, Spring Boot, SQL, and Aerospike.',
     highlights: [
-      'Performance optimization initiatives',
-      'Caching systems implementation',
-      'Production debugging and troubleshooting',
-      'Code quality improvements',
+      'Developed and optimized backend modules for SEO-critical workflows.',
+      'Improved system efficiency through caching and SQL query optimization.',
+      'Supported production stability via debugging and service tuning.',
+      'Contributed to maintainable backend code and engineering quality improvements.',
     ],
   },
 ];
