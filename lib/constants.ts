@@ -95,7 +95,8 @@ export const PROJECTS = [
     tags: ['Java', 'Spring Boot', 'Microservices', 'Redis'],
     github: 'https://github.com',
     demo: 'https://example.com',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://source.unsplash.com/1200x700/?api,gateway,backend,server',
+    imageAlt: 'System architecture themed visual for the High-Performance API Gateway project',
   },
   {
     id: 2,
@@ -104,7 +105,8 @@ export const PROJECTS = [
     tags: ['Java', 'PostgreSQL', 'Saga Pattern', 'Spring Cloud'],
     github: 'https://github.com',
     demo: 'https://example.com',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://source.unsplash.com/1200x700/?database,transaction,microservices,network',
+    imageAlt: 'Distributed systems themed visual for the Distributed Transaction System project',
   },
   {
     id: 3,
@@ -113,7 +115,8 @@ export const PROJECTS = [
     tags: ['Java', 'MongoDB', 'Aerospike', 'Message Queue'],
     github: 'https://github.com',
     demo: 'https://example.com',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://source.unsplash.com/1200x700/?analytics,dashboard,data,charts',
+    imageAlt: 'Analytics dashboard themed visual for the Real-time Analytics Dashboard project',
   },
   {
     id: 4,
@@ -122,7 +125,8 @@ export const PROJECTS = [
     tags: ['Java', 'MySQL', 'PostgreSQL', 'System Design'],
     github: 'https://github.com',
     demo: 'https://example.com',
-    image: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=600',
+    image: 'https://source.unsplash.com/1200x700/?database,migration,server,rack',
+    imageAlt: 'Database infrastructure themed visual for the Database Migration Framework project',
   },
 ];
 
