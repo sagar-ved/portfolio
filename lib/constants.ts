@@ -10,8 +10,8 @@ My focus areas include system design, microservices architecture, API developmen
 
   email: 'sagarvedbairwa.dev@gmail.com',
   github: 'https://github.com/sagar-ved',
-  linkedin: 'https://linkedin.com/in/sagarvedbairwa',
-  resume: '/resume/SAGAR_BAIRWA_RESUME.pdf',
+  linkedin: 'https://linkedin.com/in/sagarvedverma',
+  resume: '/portfolio/resume/SAGAR_BAIRWA_RESUME.pdf',
 };
 
 export const SKILLS = {

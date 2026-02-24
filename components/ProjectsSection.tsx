@@ -49,7 +49,7 @@ function ProjectCard({ project }: { project: Project }) {
           <div className="relative h-44 sm:h-48 overflow-hidden bg-card">
             <motion.img
               src={project.image}
-              alt={project.title}
+              alt={project.imageAlt ?? `${project.title} project preview`}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
               whileHover={prefersReducedMotion ? undefined : { scale: 1.1 }}
             />

@@ -58,7 +58,7 @@ export function AboutSection() {
                 <Card className="overflow-hidden border-border/40 bg-card/50 backdrop-blur">
                   <div className="aspect-[4/3] sm:aspect-square bg-gradient-to-br from-primary/20 to-accent/20">
                     <img
-                      src="/images/headshots/IMG_20260112_091144.jpg"
+                      src="https://sagar-ved.github.io/portfolio/images/headshots/IMG_20260112_091144.jpg"
                       alt="Professional headshot"
                       className="h-full w-full object-cover"
                       loading="lazy"
