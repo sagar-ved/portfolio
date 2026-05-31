@@ -208,7 +208,7 @@ export const CERTIFICATIONS = [
 export const RECRUITER_DATA = [
   {
     id: 1,
-    title: '4+ Years Backend Engineering',
+    title: '3+ Years Backend Engineering',
     highlight: 'Core Experience',
     description: 'Proven track record of designing, building, and operating scalable backend services and microservices.',
     iconName: 'Briefcase',
