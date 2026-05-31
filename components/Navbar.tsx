@@ -28,7 +28,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
-    const ids = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+    const ids = ['hero', 'about', 'why-hire-me', 'skills', 'experience', 'projects', 'blog', 'contact'];
     const observers: IntersectionObserver[] = [];
 
     ids.forEach((id) => {
@@ -60,9 +60,11 @@ export function Navbar() {
   const navItems = [
     { label: 'Home', id: 'hero' },
     { label: 'About', id: 'about' },
+    { label: 'Why Hire Me', id: 'why-hire-me' },
     { label: 'Skills', id: 'skills' },
     { label: 'Experience', id: 'experience' },
     { label: 'Projects', id: 'projects' },
+    { label: 'Blog', id: 'blog' },
     { label: 'Contact', id: 'contact' },
   ];
 
@@ -90,7 +92,7 @@ export function Navbar() {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="relative px-3 py-2 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
+                className="relative px-2 lg:px-3 py-2 text-xs lg:text-sm font-medium text-foreground/70 hover:text-foreground transition-colors"
               >
                 {item.label}
                 {activeId === item.id && (
