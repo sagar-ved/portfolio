@@ -12,17 +12,24 @@ type MotionShellProps = {
 export function MotionShell({ children }: MotionShellProps) {
   const prefersReducedMotion = useReducedMotion();
   const pathname = usePathname();
-  const [showSplash, setShowSplash] = useState(true);
+  const [showSplash, setShowSplash] = useState(false);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const smoothX = useSpring(x, { stiffness: 60, damping: 22 });
   const smoothY = useSpring(y, { stiffness: 60, damping: 22 });
   const shellRef = useRef<HTMLDivElement | null>(null);
+  const timeoutRef = useRef<any>(null);
 
-  useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      setShowSplash(false);
+  const handleDismiss = () => {
+    if (timeoutRef.current) {
+      window.clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setShowSplash(false);
+    sessionStorage.setItem('splash_shown', 'true');
 
+    // Smoothly scroll to top section to ensure correct landing position
+    setTimeout(() => {
       const heroSection = document.getElementById('hero');
       if (heroSection) {
         heroSection.scrollIntoView({
@@ -30,9 +37,39 @@ export function MotionShell({ children }: MotionShellProps) {
           block: 'start',
         });
       }
-    }, 6000);
+    }, 100);
+  };
 
-    return () => window.clearTimeout(timeout);
+  // Lock body and html scroll when splash is active to prevent background scrolling
+  useEffect(() => {
+    if (showSplash) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    };
+  }, [showSplash]);
+
+  useEffect(() => {
+    const hasShownSplash = sessionStorage.getItem('splash_shown');
+    if (!hasShownSplash) {
+      setShowSplash(true);
+
+      timeoutRef.current = window.setTimeout(() => {
+        handleDismiss();
+      }, 7000); // 7 seconds timeout maximum to allow logs to play fully, can be skipped anytime
+
+      return () => {
+        if (timeoutRef.current) {
+          window.clearTimeout(timeoutRef.current);
+        }
+      };
+    }
   }, [prefersReducedMotion]);
 
   useEffect(() => {
@@ -54,7 +91,7 @@ export function MotionShell({ children }: MotionShellProps) {
 
   return (
     <div ref={shellRef} className="relative">
-      <AnimatePresence>{showSplash && <SplashScreen />}</AnimatePresence>
+      <AnimatePresence>{showSplash && <SplashScreen onDismiss={handleDismiss} />}</AnimatePresence>
       {!prefersReducedMotion && (
         <motion.div
           aria-hidden

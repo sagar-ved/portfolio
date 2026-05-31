@@ -5,7 +5,8 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { PROJECTS } from '@/lib/constants';
-import { Github, ExternalLink } from 'lucide-react';
+import { Github, ExternalLink, BookOpen } from 'lucide-react';
+import Link from 'next/link';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 import { slideUpVariants, containerVariants, itemVariants } from '@/lib/animations';
@@ -86,16 +87,42 @@ function ProjectCard({ project }: { project: Project }) {
                   Code
                 </a>
               </Button>
-              <Button
-                asChild
-                size="sm"
-                className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
-              >
-                <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Demo
-                </a>
-              </Button>
+              {project.archSlug && (
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="w-full sm:flex-1 border-accent/40 hover:border-accent hover:bg-accent/5 text-foreground transition-all duration-200"
+                >
+                  <Link href={`/${project.archSlug}`}>
+                    <BookOpen className="h-4 w-4 mr-2 text-accent" />
+                    Docs
+                  </Link>
+                </Button>
+              )}
+              {project.demo.startsWith('/') ? (
+                <Button
+                  asChild
+                  size="sm"
+                  className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  <Link href={project.demo}>
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    Demo
+                  </Link>
+                </Button>
+              ) : (
+                <Button
+                  asChild
+                  size="sm"
+                  className="w-full sm:flex-1 bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink className="h-4 w-4 mr-2" />
+                    Demo
+                  </a>
+                </Button>
+              )}
             </div>
 
             <Dialog>
@@ -125,17 +152,33 @@ function ProjectCard({ project }: { project: Project }) {
                       </Badge>
                     ))}
                   </div>
-                  <div className="flex gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <Button asChild variant="outline" className="flex-1">
                       <a href={project.github} target="_blank" rel="noopener noreferrer">
                         GitHub
                       </a>
                     </Button>
-                    <Button asChild className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
-                      <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                        Live Demo
-                      </a>
-                    </Button>
+                    {project.archSlug && (
+                      <Button asChild variant="outline" className="flex-1 border-accent/40 hover:border-accent hover:bg-accent/5">
+                        <Link href={`/${project.archSlug}`} className="flex items-center justify-center">
+                          <BookOpen className="mr-2 h-4 w-4 text-accent" />
+                          Architecture
+                        </Link>
+                      </Button>
+                    )}
+                    {project.demo.startsWith('/') ? (
+                      <Button asChild className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+                        <Link href={project.demo} className="flex items-center justify-center">
+                          Live Demo
+                        </Link>
+                      </Button>
+                    ) : (
+                      <Button asChild className="flex-1 bg-primary hover:bg-primary/90 text-primary-foreground">
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
+                          Live Demo
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
               </DialogContent>

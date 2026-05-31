@@ -3,8 +3,13 @@
 import { motion } from 'framer-motion';
 import { PORTFOLIO_DATA } from '@/lib/constants';
 import { useEffect, useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 
-export function SplashScreen() {
+interface SplashScreenProps {
+  onDismiss: () => void;
+}
+
+export function SplashScreen({ onDismiss }: SplashScreenProps) {
   const backendFocus = [
     'Java',
     'Spring Boot',
@@ -43,6 +48,7 @@ export function SplashScreen() {
     '[INFO] Deployment completed successfully',
   ];
   const [visibleLines, setVisibleLines] = useState(1);
+  const isComplete = visibleLines === mavenLogs.length;
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -53,10 +59,19 @@ export function SplashScreen() {
         }
         return current + 1;
       });
-    }, 170);
+    }, 110); // Speed up log rendering for a snappier experience
 
     return () => window.clearInterval(interval);
   }, [mavenLogs.length]);
+
+  useEffect(() => {
+    if (isComplete) {
+      const timer = setTimeout(() => {
+        onDismiss();
+      }, 1000); // Automatically proceed to the website 1s after build completes successfully
+      return () => clearTimeout(timer);
+    }
+  }, [isComplete, onDismiss]);
 
   return (
     <motion.div
@@ -136,13 +151,40 @@ export function SplashScreen() {
           )}
         </motion.div>
 
-        <div className="mx-auto mt-6 h-1.5 w-56 overflow-hidden rounded-full bg-foreground/10">
+        {/* Real Dynamic Progress Bar */}
+        <div className="mx-auto mt-6 h-1.5 w-56 overflow-hidden rounded-full bg-foreground/10 border border-primary/10">
           <motion.div
             className="h-full bg-gradient-to-r from-primary to-accent"
-            initial={{ x: '-100%' }}
-            animate={{ x: '100%' }}
-            transition={{ duration: 1.2, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.1 }}
+            initial={{ width: '0%' }}
+            animate={{ width: `${(visibleLines / mavenLogs.length) * 100}%` }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
           />
+        </div>
+
+        {/* Premium Skip / Enter Website Action Area */}
+        <div className="mt-8 min-h-[48px] flex flex-col items-center justify-center">
+          {isComplete ? (
+            <motion.button
+              onClick={onDismiss}
+              className="px-6 py-2.5 rounded-xl border border-primary bg-primary/10 hover:bg-primary/20 text-xs font-semibold tracking-wider uppercase text-primary transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.25)] hover:shadow-[0_0_30px_rgba(6,182,212,0.45)] hover:scale-105"
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+            >
+              Enter Portfolio
+            </motion.button>
+          ) : (
+            <motion.button
+              onClick={onDismiss}
+              className="px-4 py-1.5 rounded-lg border border-border/40 bg-card/40 hover:bg-card/80 hover:border-primary/30 text-[11px] font-medium text-foreground/50 hover:text-primary transition-all duration-300 flex items-center gap-1 group cursor-pointer"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <span>Skip Intro</span>
+              <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+            </motion.button>
+          )}
         </div>
       </div>
     </motion.div>

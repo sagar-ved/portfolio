@@ -16,32 +16,71 @@ My focus areas include system design, microservices architecture, API developmen
 
 export const SKILLS = {
   'Backend & Architecture': [
-    'Distributed Systems',
     'Microservices Architecture',
+    'Distributed Systems',
+    'API Gateway Design',
     'REST API Design',
     'System Design',
+    'Scalable System Design',
     'High-Availability Systems',
+    'Event-Driven Architecture',
+    'Service Discovery',
+    'Load Balancing',
+    'Idempotent Workflows',
+    'Transaction Processing',
+    'Caching Strategies',
+    'Database Optimization',
+    'Concurrency & Multithreading',
+    'JVM Internals',
   ],
+
   'Languages & Frameworks': [
     'Java',
     'Spring Boot',
     'Spring MVC',
+    'Hibernate',
+    'REST APIs',
   ],
-  'Databases': [
+
+  'Databases & Storage': [
     'MySQL',
     'MongoDB',
+    'Redis',
+    'Aerospike',
     'Query Optimization',
   ],
-  'Infrastructure & Tools': [
-    'API Gateway',
-    'Aerospike',
-    'Bare Linux Hardware',
-    'On-Premise Servers',
+
+  'Cloud & DevOps': [
+    'Google Cloud Platform (GCP)',
+    'AWS',
     'Docker',
     'Kubernetes',
-    'GCP',
+    'Linux',
+    'Bare Linux Hardware',
+    'On-Premise Servers',
+    'CI/CD',
+  ],
+
+  'Observability & Monitoring': [
+    'Grafana',
+    'Graylog',
+    'Logging',
+    'Production Monitoring',
+  ],
+
+  'Development Tools': [
+    'Maven',
+    'Gradle',
     'Git',
+    'IntelliJ IDEA',
+    'Postman',
+    'Insomnia',
     'Agile/Scrum',
+  ],
+
+  'Testing & Quality': [
+    'Unit Testing',
+    'Integration Testing',
   ],
 };
 
@@ -94,7 +133,8 @@ export const PROJECTS = [
     description: 'Enterprise-grade Single Sign-On (SSO) and Identity Access Management platform supporting multi-tenant organizations, role-based access control, OAuth2, and centralized authentication.',
     tags: ['Java', 'Spring Boot', 'OAuth2', 'SSO', 'IAM'],
     github: 'https://github.com',
-    demo: 'https://example.com',
+    demo: '/under-development',
+    archSlug: 'databridge-arch',
     //image: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80',
     image: 'images/projects/DataBridge.png',
     imageAlt: 'Identity and authentication platform architecture',
@@ -105,7 +145,8 @@ export const PROJECTS = [
     description: 'SEO-driven nearby search platform enabling users to discover local businesses, services, metro stations, and points of interest with location intelligence.',
     tags: ['Spring Boot', 'SEO', 'Location Search', 'Maps'],
     github: 'https://github.com',
-    demo: 'https://example.com',
+    demo: '/under-development',
+    archSlug: 'nearo-arch',
     image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80',
     imageAlt: 'Digital maps and location search visualization',
   },
@@ -115,7 +156,7 @@ export const PROJECTS = [
     description: 'Real-time API monitoring dashboard with configurable API Gateway, request analytics, traffic monitoring, rate limiting, and observability features.',
     tags: ['Java', 'Spring Cloud', 'API Gateway', 'Grafana'],
     github: 'https://github.com',
-    demo: 'https://example.com',
+    demo: '/under-development',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
     imageAlt: 'API analytics and monitoring dashboard',
   },
@@ -125,7 +166,7 @@ export const PROJECTS = [
     description: 'AI-powered Android calling assistant featuring call management, voice automation, intelligent responses, and productivity enhancements.',
     tags: ['Android', 'AI', 'Voice Assistant', 'Mobile'],
     github: 'https://github.com',
-    demo: 'https://example.com',
+    demo: '/under-development',
     image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=1200&q=80',
     imageAlt: 'Mobile AI assistant application',
   },
@@ -135,7 +176,7 @@ export const PROJECTS = [
     description: 'Android device monitoring platform providing real-time performance metrics, health checks, logs, alerts, and device analytics.',
     tags: ['Android', 'Monitoring', 'Analytics', 'Performance'],
     github: 'https://github.com',
-    demo: 'https://example.com',
+    demo: '/under-development',
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1200&q=80',
     imageAlt: 'System monitoring and analytics dashboard',
   },
